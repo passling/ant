@@ -110,7 +110,14 @@ module.exports = function(webpackEnv) {
         },
       });
     }
-    loaders.push({loader: require.resolve('less-loader')})
+    loaders.push({
+        loader: require.resolve('less-loader'),
+        options: {
+            modifyVars: {
+                "@primary-color": "#f9c700"
+            }
+        }
+    })
     return loaders;
   };
 
@@ -347,7 +354,13 @@ module.exports = function(webpackEnv) {
                         },
                       },
                     },
-                  ],
+                  ],  [
+                        "import",
+                        {
+                            "libraryName": "antd",
+                            "style": true,   // or 'css'
+                        }
+                    ],
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
